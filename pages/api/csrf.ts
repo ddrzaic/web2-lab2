@@ -23,7 +23,7 @@ export default async function handler(
         await NextCors(req, res, {
           // Options
           methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-          origin: true,
+          origin: "https://exploit.tiiny.site",
           optionsSuccessStatus: 200,
           credentials: true,
         });
