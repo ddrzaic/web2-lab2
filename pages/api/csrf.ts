@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getPgClient } from "../../db";
 import { getFeatureFlags } from "../../helpers/apiHelpers";
 import { getCookie } from "cookies-next";
+import NextCors from "nextjs-cors";
+
 type Data = {
   message: string;
 };
@@ -18,8 +20,16 @@ export default async function handler(
   switch (req.method) {
     case "GET":
       if (isCSRFEnabled) {
+        await NextCors(req, res, {
+          // Options
+          methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+          origin: true,
+          optionsSuccessStatus: 200,
+          credentials: true,
+        });
         const password = req.query.password;
         const token = getCookie("token", { req, res });
+        console.log("token: ", token);
 
         client.query("UPDATE users SET password = $1 WHERE token = $2", [
           password,

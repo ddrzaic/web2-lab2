@@ -50,16 +50,16 @@ export const Users: React.FC<UsersProps> = ({ users }) => {
   return (
     <div>
       <h2>Korisnici</h2>
-      <p>
+      <div>
         Input ispod služi za demonstraciju <strong>SQL injectiona</strong>
-        <p>
+        <div>
           Primjer unosa za testiranje SQL injectiona je
           <p>
             <strong>{SQL_INJECTION}</strong>
           </p>
-        </p>
+        </div>
         <p>Navedena naredba ispisuje lozinke svih korisnika u bazi podataka.</p>
-      </p>
+      </div>
       <input
         type="text"
         placeholder="Pretraži korisnika po imenu:"

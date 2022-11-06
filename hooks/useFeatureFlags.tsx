@@ -6,10 +6,16 @@ export interface FeatureFlagsProviderReturn {
   featureFlags: FeatureFlags;
   handleFeatureFlagChange: (flag: FeatureFlags) => void;
 }
+
+const initialValues = {
+  featureFlags: {
+    injection: true,
+    csrf: true,
+  },
+  handleFeatureFlagChange: () => {},
+};
 export const FeatureFlagsContext =
-  React.createContext<FeatureFlagsProviderReturn>(
-    {} as FeatureFlagsProviderReturn
-  );
+  React.createContext<FeatureFlagsProviderReturn>(initialValues);
 
 export type FeatureFlagsProviderProps = {
   children: React.ReactNode;
