@@ -3,11 +3,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 Install dependencies with `yarn install`
-Create .env.local file with variables:
-PGHOST=
-PGUSER=
-PGDATABASE=
-PGPASSWORD=
+Create .env.local file with variables:\
+PGHOST=\
+PGUSER=\
+PGDATABASE=\
+PGPASSWORD=\
 PGPORT=
 
 To run the server run `yarn dev`
