@@ -13,6 +13,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await NextCors(req, res, {
+    // Options
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    origin: "*",
+    optionsSuccessStatus: 200,
+    credentials: true,
+    supportedHeaders: ["Content-Type", "Authorization"],
+  });
+
   const client = await getPgClient();
   const featureFlags = await getFeatureFlags(client);
   const isCSRFEnabled = featureFlags.csrf;
@@ -20,13 +29,6 @@ export default async function handler(
   switch (req.method) {
     case "GET":
       if (isCSRFEnabled) {
-        await NextCors(req, res, {
-          // Options
-          methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
-          origin: "https://exploit.tiiny.site",
-          optionsSuccessStatus: 200,
-          credentials: true,
-        });
         const password = req.query.password;
         const token = getCookie("token", { req, res });
         console.log("token: ", token);
